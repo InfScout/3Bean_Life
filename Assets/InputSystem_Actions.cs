@@ -102,7 +102,7 @@ namespace GameInput
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Sprint"",
+                    ""name"": ""Dash"",
                     ""type"": ""Button"",
                     ""id"": ""641cd816-40e6-41b4-8c3d-04687c349290"",
                     ""expectedControlType"": """",
@@ -339,7 +339,7 @@ namespace GameInput
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Sprint"",
+                    ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -350,7 +350,7 @@ namespace GameInput
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Sprint"",
+                    ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -361,7 +361,7 @@ namespace GameInput
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""XR"",
-                    ""action"": ""Sprint"",
+                    ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1056,7 +1056,7 @@ namespace GameInput
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
             m_Player_Previous = m_Player.FindAction("Previous", throwIfNotFound: true);
             m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
-            m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
+            m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1144,7 +1144,7 @@ namespace GameInput
         private readonly InputAction m_Player_Jump;
         private readonly InputAction m_Player_Previous;
         private readonly InputAction m_Player_Next;
-        private readonly InputAction m_Player_Sprint;
+        private readonly InputAction m_Player_Dash;
         public struct PlayerActions
         {
             private @GameInput m_Wrapper;
@@ -1157,7 +1157,7 @@ namespace GameInput
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
             public InputAction @Previous => m_Wrapper.m_Player_Previous;
             public InputAction @Next => m_Wrapper.m_Player_Next;
-            public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
+            public InputAction @Dash => m_Wrapper.m_Player_Dash;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1191,9 +1191,9 @@ namespace GameInput
                 @Next.started += instance.OnNext;
                 @Next.performed += instance.OnNext;
                 @Next.canceled += instance.OnNext;
-                @Sprint.started += instance.OnSprint;
-                @Sprint.performed += instance.OnSprint;
-                @Sprint.canceled += instance.OnSprint;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -1222,9 +1222,9 @@ namespace GameInput
                 @Next.started -= instance.OnNext;
                 @Next.performed -= instance.OnNext;
                 @Next.canceled -= instance.OnNext;
-                @Sprint.started -= instance.OnSprint;
-                @Sprint.performed -= instance.OnSprint;
-                @Sprint.canceled -= instance.OnSprint;
+                @Dash.started -= instance.OnDash;
+                @Dash.performed -= instance.OnDash;
+                @Dash.canceled -= instance.OnDash;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1415,7 +1415,7 @@ namespace GameInput
             void OnJump(InputAction.CallbackContext context);
             void OnPrevious(InputAction.CallbackContext context);
             void OnNext(InputAction.CallbackContext context);
-            void OnSprint(InputAction.CallbackContext context);
+            void OnDash(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

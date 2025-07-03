@@ -16354,6 +16354,30 @@ PrefabInstance:
       propertyPath: baseSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7007839512244176203, guid: cd53658d074d94a46b3ef360cb71de96, type: 3}
+      propertyPath: dashSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7007839512244176203, guid: cd53658d074d94a46b3ef360cb71de96, type: 3}
+      propertyPath: maxStamina
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7007839512244176203, guid: cd53658d074d94a46b3ef360cb71de96, type: 3}
+      propertyPath: dashCooldown
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7007839512244176203, guid: cd53658d074d94a46b3ef360cb71de96, type: 3}
+      propertyPath: dashDuration
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7007839512244176203, guid: cd53658d074d94a46b3ef360cb71de96, type: 3}
+      propertyPath: dashStaminaUse
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7007839512244176203, guid: cd53658d074d94a46b3ef360cb71de96, type: 3}
+      propertyPath: staminaRegenerationRate
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8537521877299205322, guid: cd53658d074d94a46b3ef360cb71de96, type: 3}
       propertyPath: m_Size.y
       value: 1
