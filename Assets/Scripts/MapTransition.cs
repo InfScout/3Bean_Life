@@ -5,7 +5,8 @@ public class MapTransition : MonoBehaviour
 {
    [SerializeField] PolygonCollider2D mapBoundary;
    CinemachineConfiner2D confiner;
-
+   [SerializeField] Direction direction;
+   enum Direction { Up, Down, Left, Right }
    private void Awake()
    {
       confiner = FindObjectOfType<CinemachineConfiner2D>();
@@ -18,4 +19,5 @@ public class MapTransition : MonoBehaviour
          confiner.BoundingShape2D = mapBoundary;
       }
    }
+   
 }

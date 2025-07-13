@@ -38,7 +38,7 @@ public class InteractDetect : MonoBehaviour
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
             interactableInRange.Interact();
-            AudioMan.instance.PlaySound(interactSound, transform, 1f);
+            AudioMan.instance.PlaySound(interactSound, transform, .5f);
         }
     }
 

@@ -97,11 +97,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4627118384140580907}
   - component: {fileID: 6645754982280567367}
-  - component: {fileID: 7007839512244176203}
   - component: {fileID: 5602660557232849482}
   - component: {fileID: 5878547593833231360}
   - component: {fileID: 5553178843111925702}
   - component: {fileID: 8537521877299205322}
+  - component: {fileID: 6481834371306023410}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -180,28 +180,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7007839512244176203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6243626176379966249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7d5728b7c84e594f82916905b61a7f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pov: {fileID: 0}
-  healthMax: 100
-  maxStamina: 30
-  staminaRegenerationRate: 4
-  stamina: 0
-  baseSpeed: 5
-  dashSpeed: 15
-  dashStaminaUse: 10
-  dashDuration: 0.2
-  dashCooldown: 0.5
 --- !u!114 &5602660557232849482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,7 +207,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7007839512244176203}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
@@ -285,7 +263,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Next[/Keyboard/2]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7007839512244176203}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: DashKey
         m_Mode: 0
@@ -439,6 +417,27 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.6, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &6481834371306023410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6243626176379966249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac01ab5876482aa4088265c92442baf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthMax: 100
+  maxStamina: 100
+  staminaRegenerationRate: 2.5
+  stamina: 30
+  baseSpeed: 5
+  dashSpeed: 100
+  dashStaminaUse: 1
+  dashDuration: 1
+  dashCooldown: 0.5
 --- !u!1 &9142838569832689056
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,4 +520,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eafedf21aff4104ba0c49b1156e57de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InteracIcon: {fileID: 1769937067772307083}
+  interacIcon: {fileID: 0}
+  interactSound: {fileID: 0}
