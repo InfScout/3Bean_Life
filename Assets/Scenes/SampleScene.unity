@@ -1553,12 +1553,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -18.738873, y: 12.319749}
+    - - {x: -18.855755, y: 10.170608}
       - {x: -18.287012, y: -13.619873}
       - {x: 14.494762, y: -14.166276}
       - {x: 14.3932905, y: -0.107559085}
-      - {x: 14.156721, y: 11.792408}
-      - {x: 1.0952575, y: 11.458923}
+      - {x: 14.763441, y: 10.226274}
+      - {x: 1.0952575, y: 10.311934}
   m_UseDelaunayMesh: 0
 --- !u!1 &349822026
 GameObject:
@@ -1851,8 +1851,9 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 14.9876175, y: 15.02545}
       - {x: -18.640144, y: 15.03759}
-      - {x: -19.333138, y: -15.206532}
-      - {x: 15.299436, y: -15.153177}
+      - {x: -19.42677, y: -13.614796}
+      - {x: -1.4978251, y: -13.611049}
+      - {x: 15.2058, y: -13.982783}
       - {x: 15.013511, y: 1.1971722}
   m_UseDelaunayMesh: 0
 --- !u!1 &541021169
@@ -2959,7 +2960,7 @@ Transform:
   m_GameObject: {fileID: 1564111757}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.07, y: 9.87, z: 0}
+  m_LocalPosition: {x: -3.54, y: 9.57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2999,7 +3000,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.6099111, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3009,7 +3010,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.3482044, y: 1}
+  m_Size: {x: 3.3482044, y: 0.27779055}
   m_EdgeRadius: 0
 --- !u!114 &1564111760
 MonoBehaviour:
