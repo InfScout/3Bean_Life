@@ -12,16 +12,16 @@ public class Npc : MonoBehaviour , IInteratable
     public Image portraitImage;
 
     private int _dialogueIndex;
-    private bool _isTyping , _isDialogueActive;
+    private bool isTyping , isDialogueActive;
     
     public bool IsInteractable()
     {
-        return !_isDialogueActive;
+        return !isDialogueActive;
     }
 
     public void Interact()
     {
-        if (_isDialogueActive)
+        if (isDialogueActive)
         {
             NextLine();
         }
@@ -29,13 +29,14 @@ public class Npc : MonoBehaviour , IInteratable
         else
         {
             StartDialogue();
+            Debug.Log("Npc Interacted");
         }
     }
 
 
     void StartDialogue()
     {
-        _isDialogueActive = true;
+        isDialogueActive = true;
         _dialogueIndex = 0;
         
         nameText.SetText(dialogueData.npcName);
@@ -50,7 +51,7 @@ public class Npc : MonoBehaviour , IInteratable
 
     IEnumerator TypeDialogue()
     {
-        _isTyping = true;
+        isTyping = true;
         dialogueText.SetText("");
 
         foreach (char letter in dialogueData.dialogueLines[_dialogueIndex])
@@ -58,16 +59,16 @@ public class Npc : MonoBehaviour , IInteratable
             dialogueText.text += letter;
             yield return new WaitForSeconds(dialogueData.typingSpeed);
         }
-        _isTyping = false;
+        isTyping = false;
         
     }
     void NextLine()
     {
-        if (_isTyping)
+        if (isTyping)
         {
             StopAllCoroutines();
             dialogueText.SetText(dialogueData.dialogueLines[_dialogueIndex]);
-            _isTyping = false;
+            isTyping = false;
         }
         else if (++_dialogueIndex < dialogueData.dialogueLines.Length)
         {
@@ -82,7 +83,7 @@ public class Npc : MonoBehaviour , IInteratable
     public void EndDialogue()
     {
         StopAllCoroutines();
-        _isDialogueActive = false;
+        isDialogueActive = false;
         dialogueText.SetText("");
         dialoguepannel.SetActive(false);
         //unpause WIP

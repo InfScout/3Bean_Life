@@ -1,7 +1,9 @@
-
+using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -26,8 +28,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashDuration = 1f;
     [SerializeField] private float dashCooldown = 0.5f;
     
-    private bool _canDash;
-    private bool _dashing;
+    private bool _canDash = true;
+    private bool _dashing = false;
     private Rigidbody2D _rb;
     private Vector2 _movement;
     private Vector2 _dashDir;
@@ -46,7 +48,6 @@ public class PlayerMovement : MonoBehaviour
         _canDash = true;
         stamina = maxStamina;
         _health = healthMax;
-        _dashing = false;
     }
 
     void Update()
@@ -65,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_canDash && stamina >= dashStaminaUse)
         {
-            StartCoroutine(Dash());
+        StartCoroutine(Dash());
         }
     }
     
