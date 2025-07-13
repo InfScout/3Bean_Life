@@ -1,7 +1,6 @@
 using UnityEngine;
 
-public interface IInteratable
+public interface Interatable
 {
     void Interact();
-    bool IsInteractable();
 }
