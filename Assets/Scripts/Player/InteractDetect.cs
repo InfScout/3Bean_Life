@@ -6,12 +6,12 @@ using UnityEngine.InputSystem;
 public class InteractDetect : MonoBehaviour
 {
     private IInteratable interactableInRange = null;
-    public GameObject InteracIcon;
-    [SerializeField] private AudioClip InteractSound;
+    public GameObject interacIcon;
+    [SerializeField] private AudioClip interactSound;
 
     void Start()
     {
-        InteracIcon.SetActive(false);
+        interacIcon.SetActive(false);
     }
 
 
@@ -20,7 +20,7 @@ public class InteractDetect : MonoBehaviour
         if (collision.TryGetComponent(out IInteratable interactable) && interactable.IsInteractable())
         {
             interactableInRange = interactable;
-            InteracIcon.SetActive(true);
+            interacIcon.SetActive(true);
         }
     }
 
@@ -29,25 +29,16 @@ public class InteractDetect : MonoBehaviour
         if (collision.TryGetComponent(out IInteratable interactable) && interactable == interactableInRange)
         {
             interactableInRange = null;
-            InteracIcon.SetActive(false);
+            interacIcon.SetActive(false);
         }
     }
-
-    /*public void OnInteract(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            interactableInRange.Interact();
-            AudioMan.instance.PlaySound(InteractSound, transform, 1f);
-        }
-    }*/
-
+    
     private void Update()
     {
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
             interactableInRange.Interact();
-            AudioMan.instance.PlaySound(InteractSound, transform, 1f);
+            AudioMan.instance.PlaySound(interactSound, transform, 1f);
         }
     }
 
