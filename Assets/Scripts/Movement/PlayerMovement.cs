@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
         _rb.linearVelocity = _movement * baseSpeed;
         if (Input.GetKeyDown(KeyCode.LeftShift) && _canDash && stamina >= dashStaminaUse)
         {
-            StartCoroutine(Dash());
+        StartCoroutine(Dash());
         }
     }
 
