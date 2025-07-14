@@ -31,6 +31,11 @@ public class Movement : MonoBehaviour
     [SerializeField] private float dashDuration = 1f;
     [SerializeField] private float dashCooldown = 0.5f;
     
+    [Header("Mouse")]
+    private Vector2 pointerInput;
+
+    private WeaponHandler weaponHandler;
+    
     private bool _canDash = true;
     private bool _dashing = false;
     private Rigidbody2D _rb;
@@ -38,24 +43,26 @@ public class Movement : MonoBehaviour
     private Vector2 _dashDir;
     private Animator _animator;
 
-
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        _rb = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
-    }
-
     private void Awake()
     {
         _canDash = true;
         stamina = maxStamina;
         _health = healthMax;
     }
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        _rb = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
+        weaponHandler = GetComponent<WeaponHandler>();
+    }
+
 
     void Update()
     {
+        pointerInput = GetMousePos();
+        weaponHandler.MousePos = pointerInput;
         if (_dashing)
         {
             return;
@@ -64,6 +71,13 @@ public class Movement : MonoBehaviour
         stamina = Mathf.Clamp(stamina, 0, maxStamina);
         _rb.linearVelocity = _movement * baseSpeed;
         
+    }
+
+    public Vector2 GetMousePos()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = Camera.main.WorldToScreenPoint(transform.position).z;
+        return Camera.main.ScreenToWorldPoint(mousePos);
     }
     
     public void DashKey(InputAction.CallbackContext context)
