@@ -102,7 +102,7 @@ namespace GameInput
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MousePos"",
+                    ""name"": ""pointerPosition"",
                     ""type"": ""Value"",
                     ""id"": ""c1540cb8-6371-4bbc-94ce-c88bba05cd04"",
                     ""expectedControlType"": ""Vector2"",
@@ -427,7 +427,7 @@ namespace GameInput
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MousePos"",
+                    ""action"": ""pointerPosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1023,7 +1023,7 @@ namespace GameInput
             m_Player_Previous = m_Player.FindAction("Previous", throwIfNotFound: true);
             m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
             m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
-            m_Player_MousePos = m_Player.FindAction("MousePos", throwIfNotFound: true);
+            m_Player_pointerPosition = m_Player.FindAction("pointerPosition", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1111,7 +1111,7 @@ namespace GameInput
         private readonly InputAction m_Player_Previous;
         private readonly InputAction m_Player_Next;
         private readonly InputAction m_Player_Dash;
-        private readonly InputAction m_Player_MousePos;
+        private readonly InputAction m_Player_pointerPosition;
         public struct PlayerActions
         {
             private @GameInput m_Wrapper;
@@ -1124,7 +1124,7 @@ namespace GameInput
             public InputAction @Previous => m_Wrapper.m_Player_Previous;
             public InputAction @Next => m_Wrapper.m_Player_Next;
             public InputAction @Dash => m_Wrapper.m_Player_Dash;
-            public InputAction @MousePos => m_Wrapper.m_Player_MousePos;
+            public InputAction @pointerPosition => m_Wrapper.m_Player_pointerPosition;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1158,9 +1158,9 @@ namespace GameInput
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
-                @MousePos.started += instance.OnMousePos;
-                @MousePos.performed += instance.OnMousePos;
-                @MousePos.canceled += instance.OnMousePos;
+                @pointerPosition.started += instance.OnPointerPosition;
+                @pointerPosition.performed += instance.OnPointerPosition;
+                @pointerPosition.canceled += instance.OnPointerPosition;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -1189,9 +1189,9 @@ namespace GameInput
                 @Dash.started -= instance.OnDash;
                 @Dash.performed -= instance.OnDash;
                 @Dash.canceled -= instance.OnDash;
-                @MousePos.started -= instance.OnMousePos;
-                @MousePos.performed -= instance.OnMousePos;
-                @MousePos.canceled -= instance.OnMousePos;
+                @pointerPosition.started -= instance.OnPointerPosition;
+                @pointerPosition.performed -= instance.OnPointerPosition;
+                @pointerPosition.canceled -= instance.OnPointerPosition;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1382,7 +1382,7 @@ namespace GameInput
             void OnPrevious(InputAction.CallbackContext context);
             void OnNext(InputAction.CallbackContext context);
             void OnDash(InputAction.CallbackContext context);
-            void OnMousePos(InputAction.CallbackContext context);
+            void OnPointerPosition(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
