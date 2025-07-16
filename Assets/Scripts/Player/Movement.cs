@@ -32,11 +32,13 @@ public class Movement : MonoBehaviour
     private Vector2 MousePos;
 
     private WeaponHandler _weaponHandler;
+    private Enemy enemy;
     
     private bool _canDash = true;
     private bool _dashing = false;
     private Vector2 _dashDir;
     private Animator _animator;
+    
 
     private void Awake()
     {
@@ -51,6 +53,7 @@ public class Movement : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _weaponHandler = GetComponentInChildren<WeaponHandler>();
+        Pov.SetActive(true);
     }
 
 
@@ -69,6 +72,11 @@ public class Movement : MonoBehaviour
         stamina = Mathf.Clamp(stamina, 0, maxStamina);
         _rb.linearVelocity = _movement * baseSpeed;
         
+    }
+
+    private void PerformAttack(InputAction.CallbackContext obj)
+    {
+        _weaponHandler.Attack();
     }
 
     public Vector2 GetMousePos()

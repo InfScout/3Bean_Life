@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64d6b80f7f5e3f14280b83c41fbe7fcd, type: 3}
   m_Name: Vijay
   m_EditorClassIdentifier: 
-  npcName: Vijay
+  npcName: Muhamed
   npcPortrait: {fileID: 21300000, guid: 84ec8a80e132c904da7f5f3da5e1411c, type: 3}
   dialogueLines:
   - Vanakam, My name is Vijay, Mi love play cricket every chance mi get, from mi

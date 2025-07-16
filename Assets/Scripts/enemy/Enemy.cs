@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 public class Enemy : MonoBehaviour
@@ -8,6 +9,9 @@ public class Enemy : MonoBehaviour
     [SerializeField]private EnemyStats stats;
     [SerializeField]private float _health;
 
+    public UnityEvent<GameObject> OnHitRef;
+    
+    private bool _isDead;
     private void Awake()
     {
         _health = stats.maxHealth;
