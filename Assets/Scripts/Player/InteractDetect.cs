@@ -13,8 +13,7 @@ public class InteractDetect : MonoBehaviour
     {
         interacIcon.SetActive(false);
     }
-
-
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent(out IInteratable interactable) && interactable.IsInteractable())

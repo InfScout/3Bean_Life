@@ -109,6 +109,15 @@ namespace GameInput
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""1d2b7eed-38d0-4c55-b129-266facd9462f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -428,6 +437,17 @@ namespace GameInput
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""pointerPosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a932febc-73cc-4605-bdd0-7771bc575b2e"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1024,6 +1044,7 @@ namespace GameInput
             m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
             m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
             m_Player_pointerPosition = m_Player.FindAction("pointerPosition", throwIfNotFound: true);
+            m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1112,6 +1133,7 @@ namespace GameInput
         private readonly InputAction m_Player_Next;
         private readonly InputAction m_Player_Dash;
         private readonly InputAction m_Player_pointerPosition;
+        private readonly InputAction m_Player_Pause;
         public struct PlayerActions
         {
             private @GameInput m_Wrapper;
@@ -1125,6 +1147,7 @@ namespace GameInput
             public InputAction @Next => m_Wrapper.m_Player_Next;
             public InputAction @Dash => m_Wrapper.m_Player_Dash;
             public InputAction @pointerPosition => m_Wrapper.m_Player_pointerPosition;
+            public InputAction @Pause => m_Wrapper.m_Player_Pause;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1161,6 +1184,9 @@ namespace GameInput
                 @pointerPosition.started += instance.OnPointerPosition;
                 @pointerPosition.performed += instance.OnPointerPosition;
                 @pointerPosition.canceled += instance.OnPointerPosition;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -1192,6 +1218,9 @@ namespace GameInput
                 @pointerPosition.started -= instance.OnPointerPosition;
                 @pointerPosition.performed -= instance.OnPointerPosition;
                 @pointerPosition.canceled -= instance.OnPointerPosition;
+                @Pause.started -= instance.OnPause;
+                @Pause.performed -= instance.OnPause;
+                @Pause.canceled -= instance.OnPause;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1383,6 +1412,7 @@ namespace GameInput
             void OnNext(InputAction.CallbackContext context);
             void OnDash(InputAction.CallbackContext context);
             void OnPointerPosition(InputAction.CallbackContext context);
+            void OnPause(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
