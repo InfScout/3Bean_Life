@@ -1,5 +1,6 @@
 
 using System.Collections;
+using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -12,9 +13,9 @@ public class Movement : MonoBehaviour
     #region Stats
     [SerializeField] private GameObject pov;
     [SerializeField] private float healthMax = 100f;
-    [SerializeField] private float maxStamina = 100f;
+    [SerializeField] private float maxStamina = 30;
     [SerializeField] private float staminaRegenerationRate = 0.5f;
-    [SerializeField]private float stamina;
+    public float stamina;
     private float _health;
     #endregion
     
@@ -63,10 +64,18 @@ public class Movement : MonoBehaviour
         pov.SetActive(true);
     }
 
+    public void Save()
+    {
+        SaveData saveData = new SaveData();
+        {
+            saveData.playerStamina = stamina;
+        }
+        File.WriteAllText(SaveMan.Instance.saveLocation, JsonUtility.ToJson(saveData));
+    }
 
     void Update()
     {
-       
+        
             LookLeftRight();
         
             _pointerInput = GetMousePos();

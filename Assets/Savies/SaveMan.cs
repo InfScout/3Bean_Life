@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class SaveMan : MonoBehaviour
 {
-   private string saveLocation;
+   public string saveLocation;
+   public static SaveMan Instance;
+   
 
+
+   private void Awake()
+   {
+      if (Instance == null)
+         Instance = this;
+   }
    void Start()
    {
       saveLocation = Path.Combine(Application.persistentDataPath, "saveFile.json");
@@ -13,24 +21,23 @@ public class SaveMan : MonoBehaviour
 
    public void Save()
    {
-      SaveFile saveFile = new SaveFile();
+      SaveData saveData = new SaveData();
       {
-         saveFile.playerPosition = GameObject.Find("Player").transform.position;
-         saveFile.mapBoundary = FindAnyObjectByType<CinemachineConfiner2D>().BoundingShape2D.gameObject.name;
+         saveData.playerPosition = GameObject.Find("Player").transform.position;
+         saveData.mapBoundary = FindAnyObjectByType<CinemachineConfiner2D>().BoundingShape2D.gameObject.name;
       }
-      File.WriteAllText(saveLocation, JsonUtility.ToJson(saveFile));
+      File.WriteAllText(saveLocation, JsonUtility.ToJson(saveData));
    }
 
    public void Load()
    {
       if (File.Exists(saveLocation))
       {
-         SaveFile saveFile = JsonUtility.FromJson<SaveFile>(File.ReadAllText(saveLocation)); 
+         SaveData saveData = JsonUtility.FromJson<SaveData>(File.ReadAllText(saveLocation)); 
          
-         GameObject.Find("Player").transform.position = saveFile.playerPosition;
-         
+         GameObject.Find("Player").transform.position = saveData.playerPosition;
          FindAnyObjectByType<CinemachineConfiner2D>().BoundingShape2D = GameObject.Find
-         (saveFile.mapBoundary).GetComponent<PolygonCollider2D>();
+         (saveData.mapBoundary).GetComponent<PolygonCollider2D>();
       }
       else
       {

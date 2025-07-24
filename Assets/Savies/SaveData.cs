@@ -1,7 +1,9 @@
 using UnityEngine;
 [System.Serializable]
-public class SaveFile 
+public class SaveData 
 {
     public Vector3 playerPosition;
     public string mapBoundary;
+    public float playerStamina;
+    public float playerHealth;
 }

@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d6b80f7f5e3f14280b83c41fbe7fcd, type: 3}
+  m_Name: Bert
+  m_EditorClassIdentifier: 
+  npcName: Bert
+  npcPortrait: {fileID: 21300000, guid: c8ed81781541a0f4083aeec403dcd21c, type: 3}
+  dialogueLines:
+  - Mi name Bert, mi a Will fada.
+  - Mi a beg yuh, spare mi!
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Yuh know seh all elevator dem move same way? Dem tek 'bout seven and a half second
+    fi reach.
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  - Beg yuh..
+  typingSpeed: 0.05
+  npcSound: {fileID: 0}
+  voicePitch: 0.9
