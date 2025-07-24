@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ce62e9053b5a6384fa7751723bce702a
+guid: de851aa5e13d8d04d85789f3f60b252d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4482242759619320672
-    second: YAY_0
+      213: -7212743939725961781
+    second: DialogBox_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: YAY_0
+      name: DialogBox_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 57
-        height: 62
+        width: 300
+        height: 58
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0a4e2d345ffdbc1c0800000000000000
-      internalID: -4482242759619320672
+      spriteID: bc558c00a9f27eb90800000000000000
+      internalID: -7212743939725961781
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      YAY_0: -4482242759619320672
+      DialogBox_0: -7212743939725961781
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

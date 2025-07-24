@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: ce62e9053b5a6384fa7751723bce702a
+guid: 1ef6d10fbfe40e642a4d0855eb88b770
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4482242759619320672
-    second: YAY_0
+      213: -9118141224341489013
+    second: DialogInfo_0
+  - first:
+      213: 1955725996184613603
+    second: DialogInfo_1
+  - first:
+      213: -8787807355470394112
+    second: DialogInfo_2
+  - first:
+      213: 8801862710737495635
+    second: DialogInfo_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,12 +55,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +84,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -139,13 +148,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: YAY_0
+      name: DialogInfo_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 57
-        height: 62
+        width: 20
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +163,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0a4e2d345ffdbc1c0800000000000000
-      internalID: -4482242759619320672
+      spriteID: b8ab74fcddad57180800000000000000
+      internalID: -9118141224341489013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DialogInfo_1
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 0
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e2b4908e62242b10800000000000000
+      internalID: 1955725996184613603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DialogInfo_2
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 0
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00d4f9e15cf6b0680800000000000000
+      internalID: -8787807355470394112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DialogInfo_3
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 0
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 356e34b408f762a70800000000000000
+      internalID: 8801862710737495635
       vertices: []
       indices: 
       edges: []
@@ -164,7 +239,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 55d89c0867cd4984caadffc907a42c0a
     internalID: 0
     vertices: []
     indices: 
@@ -174,7 +249,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      YAY_0: -4482242759619320672
+      DialogInfo_0: -9118141224341489013
+      DialogInfo_1: 1955725996184613603
+      DialogInfo_2: -8787807355470394112
+      DialogInfo_3: 8801862710737495635
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
