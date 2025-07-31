@@ -121,6 +121,7 @@ public class Movement : MonoBehaviour
     
     private IEnumerator Dash()
     { 
+        
         _canDash = false;
         _dashing = true;
         stamina -= dashStaminaUse;
