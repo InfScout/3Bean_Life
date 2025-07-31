@@ -8,7 +8,9 @@ public class InteractDetect : MonoBehaviour
     private IInteratable interactableInRange = null;
     public GameObject interacIcon;
     [SerializeField] private AudioClip interactSound;
-
+    
+    
+    
     void Start()
     {
         interacIcon.SetActive(false);
@@ -37,10 +39,10 @@ public class InteractDetect : MonoBehaviour
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
             interactableInRange.Interact();
-            AudioMan.instance.PlaySound(interactSound, transform, .5f);
+            AudioMan.instance.PlaySound(interactSound, transform, 10f, Random.Range(.5f, 10f));
         }
     }
-
+    
 }
 
 

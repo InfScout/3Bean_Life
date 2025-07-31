@@ -11,13 +11,15 @@ public class AudioMan : MonoBehaviour
          instance = this;
    }
 
-   public void PlaySound(AudioClip audioClip, Transform spawnLocation, float volume)
+   public void PlaySound(AudioClip audioClip, Transform spawnLocation, float volume, float pitch)
    {
       AudioSource audioSource = Instantiate(soundObj, spawnLocation.position, Quaternion.identity);
       
       audioSource.clip = audioClip;
       
       audioSource.volume = volume;
+      
+      audioSource.pitch = pitch;
       
       audioSource.Play();
       
