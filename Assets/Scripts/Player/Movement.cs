@@ -12,11 +12,10 @@ public class Movement : MonoBehaviour
 
     #region Stats
     [SerializeField] private GameObject pov;
-    [SerializeField] private float healthMax = 100f;
     [SerializeField] private float maxStamina = 30;
     [SerializeField] private float staminaRegenerationRate = 0.5f;
     public float stamina;
-    private float _health;
+    
     #endregion
     
     [Header("movement")]
@@ -54,7 +53,6 @@ public class Movement : MonoBehaviour
     {
         _canDash = true;
         stamina = maxStamina;
-        _health = healthMax;
     }
     void Start()
     {
