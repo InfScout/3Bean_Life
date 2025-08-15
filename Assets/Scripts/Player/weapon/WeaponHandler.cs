@@ -60,7 +60,6 @@ public class WeaponHandler : MonoBehaviour
       foreach (Collider2D collider in Physics2D.OverlapCircleAll(circleOrigin.position, radius))
       {
           Health health;
-          Debug.Log(collider.name);
           if (health = collider.GetComponent<Health>())
           {
               health.GetHit(damage, player);

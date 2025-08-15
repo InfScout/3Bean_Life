@@ -1,34 +1,65 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using Pathfinding;
 
 public enum EnemyAiState
 {
     Chase,
     Patrol,
+    PreAttack,
     Attack
 }
 public class EnemyBehaviour : MonoBehaviour
 {
     
-    [SerializeField]private float moveSpeed;
-    [SerializeField]private Transform target;
-    [SerializeField]private float minDistance;
-    [SerializeField]private float maxDistance;
+    private Animator _animator;
     
-    [SerializeField]private float patrolSpeed;
+    IAstarAI ai;
+    [Header("Chase")]
+    [SerializeField]private Transform target;
+    
+   [Header("Patrol")]
     [SerializeField]private Transform[] patrolPoint;
     [SerializeField]private float waitTime;
-    private int currentPointIndex;
+    private int currentPatrolPoint;
+    float switchTime = float.PositiveInfinity;
+    
+    [Header("detection")]
+    private bool seePlayer = false;
+    [SerializeField]private float detectionRange;
+    [SerializeField]private Vector2 playerDirection;
+    private Transform player;
 
-    private bool once;
+    [SerializeField] private EnemyAiState CurrentState;
     
+    [Header("Attack")]
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private float fireRate = 1.5f;
+    [SerializeField] private float attackDist = 5;
     
-    [SerializeField] EnemyAiState CurrentState = EnemyAiState.Patrol;
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        EnemyAiState CurrentState = EnemyAiState.Patrol;
+    }
+    private void OnEnable()
+    {
+        ai = GetComponent<IAstarAI>();
+        if (ai != null) ai.onSearchPath += Update;
+        _animator = GetComponent<Animator>();
+    }
+
+    private void OnDisable()
+    {
+        if (ai != null) ai.onSearchPath -= Update;
+    }
 
     private void Update()
     {
     
+        DetectPlayer();
+        
         switch (CurrentState)
         {
         
@@ -40,52 +71,97 @@ public class EnemyBehaviour : MonoBehaviour
                 ChaseTarget();
                 break;
         
+            case EnemyAiState.PreAttack:
+                PreAttack();
+                break;
             case EnemyAiState.Attack:
-
+                Attack();
                 break;
         }
     }
-    /// <summary>
-    /// Chase state
-    /// </summary>
+    
     private void ChaseTarget()
     {
-        transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+        if (target != null && ai != null) ai.destination = target.position;
     }
-
-    /// <summary>
-    /// patrol state
-    /// </summary>
+    
     private void PatrolState()
     {
-        if (transform.position != patrolPoint[currentPointIndex].position)
-        {
-            transform.position = Vector2.MoveTowards(transform.position,
-                patrolPoint[currentPointIndex].position,
-                patrolSpeed * Time.deltaTime);
+        if (patrolPoint.Length == 0) return;
+
+        bool search = false;
+
+        
+        if (ai.reachedEndOfPath && !ai.pathPending && float.IsPositiveInfinity(switchTime)) {
+            switchTime = Time.time + waitTime;
         }
-        else
-        {
-            if (once == false)
-            {
-                once = true;
-                StartCoroutine(Wait());
-            }
+
+        if (Time.time >= switchTime) {
+            currentPatrolPoint = currentPatrolPoint + 1;
+            search = true;
+            switchTime = float.PositiveInfinity;
         }
+
+        currentPatrolPoint = currentPatrolPoint % patrolPoint.Length;
+        ai.destination = patrolPoint[currentPatrolPoint].position;
+
+        if (search) ai.SearchPath();
     }
 
-    IEnumerator Wait()
+    private void PreAttack()
     {
-        yield return new WaitForSeconds(waitTime);
-        if (currentPointIndex + 1 < patrolPoint.Length)
-        {
-            currentPointIndex++;
-        }
-        else
-        {
-            currentPointIndex = 0;
-        }
-        once = false;
+        Debug.Log("is goig to attk");
+        _animator.SetBool("isAttak",true);
+      
+        StartCoroutine(WaitToAttack());
     }
 
+    public void Attack()
+    {
+        Debug.Log("attack");
+        
+        Bullet bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity).GetComponent<Bullet>();
+        
+        Debug.Log("chase");
+        CurrentState = EnemyAiState.Chase;
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            EnemyAiState CurrentState = EnemyAiState.Chase;
+            target = other.transform;
+        }
+    }
+
+    private void DetectPlayer()
+    {
+        Vector2 enemyToPlayer = player.position - transform.position;
+        playerDirection = enemyToPlayer.normalized;
+        if (enemyToPlayer.magnitude <= attackDist)
+        {
+            CurrentState = EnemyAiState.PreAttack;
+        }
+        else if (enemyToPlayer.magnitude <= detectionRange)
+        {
+            CurrentState = EnemyAiState.Chase;
+        }
+        
+        else
+        {
+            CurrentState = EnemyAiState.Patrol;
+        }
+    }
+
+    IEnumerator WaitToAttack()
+    {
+        yield return new WaitForSeconds(fireRate);
+        CurrentState = EnemyAiState.Attack;
+    }
+   
+    
 }
+
+   
+

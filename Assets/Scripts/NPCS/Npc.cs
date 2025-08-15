@@ -41,8 +41,7 @@ public class Npc : MonoBehaviour , IInteratable
         portraitImage.sprite = dialogueData.npcPortrait;
         
         dialoguepannel.SetActive(true);
-        //pause WIP
-        //type line/dialogue
+        
             StartCoroutine(TypeDialogue());
     }
     
@@ -84,6 +83,6 @@ public class Npc : MonoBehaviour , IInteratable
         _isDialogueActive = false;
         dialogueText.SetText("");
         dialoguepannel.SetActive(false);
-        //unpause WIP
+        
     }
 }
