@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using Pathfinding;
+using Random = System.Random;
 
 public enum EnemyAiState
 {
@@ -110,7 +111,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void PreAttack()
     {
-        Debug.Log("is goig to attk");
+        //play animation
         _animator.SetBool("isAttak",true);
       
         StartCoroutine(WaitToAttack());
@@ -119,8 +120,8 @@ public class EnemyBehaviour : MonoBehaviour
     public void Attack()
     {
         Debug.Log("attack");
-        
-        Bullet bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity).GetComponent<Bullet>();
+
+        Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         
         Debug.Log("chase");
         CurrentState = EnemyAiState.Chase;

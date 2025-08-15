@@ -5,34 +5,44 @@ using Random = UnityEngine.Random;
 public class Bullet : MonoBehaviour
 {
     private IHittable _playerInHitbox = null;
+    private GameObject Player;
     [SerializeField] private float damage = 5f;
     [SerializeField] float bulletSpeed = 10;
+    private float timer;
     [SerializeField] float bulletLifeTime = 10;
-    private Rigidbody2D _rigidbody;
+    private Rigidbody2D rb;
     [SerializeField] private AudioClip bangAudioClip;
     private GameObject bullet;
     private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
     {
-        AudioMan.instance.PlaySound(bangAudioClip, transform, 10f, Random.Range(.5f, 10f));
+      Player = GameObject.FindGameObjectWithTag("Player");
+      Vector3 direction = Player.transform.position - transform.position;   
+      rb.linearVelocity = direction.normalized * bulletSpeed; 
+      
+      float rota = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
+      transform.rotation = Quaternion.Euler(0f, 0f, rota);
     }
 
-    public void Launch(Vector2 dir)
+    private void Update()
     {
-        _rigidbody.AddForce(dir * bulletSpeed);
-        Destroy(gameObject, bulletLifeTime);
+        timer += Time.deltaTime;
+        if (timer >= bulletLifeTime)
+        {
+            Destroy(this.gameObject);
+        }
     }
-
+   
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out IHittable hittable) && hittable.isHittable())
+        if (collision.gameObject.CompareTag("Player"))
         {
-            _playerInHitbox.TakeDMG(damage);
-
+            collision.gameObject.GetComponent<Player>().TakeDMG(damage);
+            Destroy(this.gameObject);   
         }
     }
 }
