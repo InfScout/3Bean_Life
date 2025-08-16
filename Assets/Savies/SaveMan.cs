@@ -6,7 +6,7 @@ public class SaveMan : MonoBehaviour
 {
    public string saveLocation;
    public static SaveMan Instance;
-   
+   [SerializeField]GameObject player;
 
 
    private void Awake()
@@ -16,6 +16,7 @@ public class SaveMan : MonoBehaviour
    }
    void Start()
    {
+      player = GameObject.FindGameObjectWithTag("Player");
       saveLocation = Path.Combine(Application.persistentDataPath, "saveFile.json");
    }
 
@@ -25,6 +26,8 @@ public class SaveMan : MonoBehaviour
       {
          saveData.playerPosition = GameObject.Find("Player").transform.position;
          saveData.mapBoundary = FindAnyObjectByType<CinemachineConfiner2D>().BoundingShape2D.gameObject.name;
+         saveData.playerHealth = player.GetComponent<Player>()._health;
+         saveData.playerStamina = player.GetComponent<Movement>().stamina;
       }
       File.WriteAllText(saveLocation, JsonUtility.ToJson(saveData));
    }
@@ -38,6 +41,10 @@ public class SaveMan : MonoBehaviour
          GameObject.Find("Player").transform.position = saveData.playerPosition;
          FindAnyObjectByType<CinemachineConfiner2D>().BoundingShape2D = GameObject.Find
          (saveData.mapBoundary).GetComponent<PolygonCollider2D>();
+         player.GetComponent<Player>()._health = saveData.playerHealth;
+         player.GetComponent<Player>().TakeDMG(0);
+         player.GetComponent<Movement>().stamina = saveData.playerStamina; 
+         
       }
       else
       {

@@ -24,6 +24,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float baseSpeed = 5f;
     private Rigidbody2D _rb;
     private Vector2 _movement;
+    [SerializeField] private Bars staminaBar;
     [SerializeField] private float dashSpeed = 100f;
     [SerializeField] private float dashStaminaUse = 1f;
     [SerializeField] private float dashDuration = 1f;
@@ -39,7 +40,7 @@ public class Movement : MonoBehaviour
     private Vector2 _mousePos;
 
     private WeaponHandler _weaponHandler;
-    private Enemy _enemy;
+    
     
     private bool _canDash = true;
     private bool _dashing = false;
@@ -60,15 +61,7 @@ public class Movement : MonoBehaviour
         _animator = GetComponent<Animator>();
         _weaponHandler = GetComponentInChildren<WeaponHandler>();
         pov.SetActive(true);
-    }
-
-    public void Save()
-    {
-        SaveData saveData = new SaveData();
-        {
-            saveData.playerStamina = stamina;
-        }
-        File.WriteAllText(SaveMan.Instance.saveLocation, JsonUtility.ToJson(saveData));
+        staminaBar.SetMaxBar(maxStamina);
     }
 
     void Update()
@@ -82,10 +75,10 @@ public class Movement : MonoBehaviour
             {
                 return;
             }
-        
             stamina += Time.deltaTime * staminaRegenerationRate;
             stamina = Mathf.Clamp(stamina, 0, maxStamina);
             _rb.linearVelocity = _movement * baseSpeed;
+            staminaBar.SetBar(stamina);
     }
 
     private void PerformAttack(InputAction.CallbackContext obj)

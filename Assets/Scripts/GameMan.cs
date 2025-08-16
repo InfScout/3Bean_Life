@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Timeline;
@@ -5,7 +6,6 @@ using UnityEngine.Timeline;
 public enum GameState
 { 
 Paused,
-GameOver,
 YouWin,
 UnPaused
 }
@@ -13,10 +13,13 @@ public class GameMan : MonoBehaviour
 {
     public static GameMan Instance;
     [SerializeField] private GameState gameState;
-    [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private GameObject youWinScreen;
     [SerializeField] private GameObject pauseScreen;
     public bool gameIsPaused = false;
+    
+    
+    public int _score = 0;
+    [SerializeField] private TextMeshProUGUI _scoreText;
     
     
     private void Awake()
@@ -35,15 +38,12 @@ public class GameMan : MonoBehaviour
             case GameState.UnPaused:
                 UnPauseGame();
                 break;
-            case GameState.GameOver:
-                GameOver();
-                break;
             case GameState.YouWin:
                 YouWin();
                 break;
         }
     }
-//pausing game
+
 
     public void PauseAction(InputAction.CallbackContext context)
     {
@@ -73,15 +73,20 @@ public class GameMan : MonoBehaviour
         gameIsPaused = false;
         Time.timeScale = 1;
     }
-//You Win / lose
-    public void GameOver()
-    {
-        gameOverScreen.SetActive(true);
-    }
 
     public void YouWin()
     {
         youWinScreen.SetActive(true);
     }
     
+    public void AddScore(int scoreAdd)
+    {
+        _score += scoreAdd;
+    }
+    
+    public void UpdateScore()
+    {
+        
+        _scoreText.text = "Score : " + _score;
+    }
 }

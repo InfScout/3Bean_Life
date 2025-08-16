@@ -17,6 +17,9 @@
        [SerializeField] private float _splooshDuration;
        
        [SerializeField] private AudioClip _hitSound;
+       [SerializeField]private int mobminValue;
+       [SerializeField]private int mobmaxValue;
+       private int mobValue;
        
        private bool isDead = false;
 
@@ -48,8 +51,11 @@
            }
            else
            {
+               mobValue = Random.Range(mobminValue, mobmaxValue);
+               GameMan.Instance.AddScore(mobValue);
                OnDeathWithReference?.Invoke(sender);
                isDead = true;
+               GameMan.Instance.UpdateScore();
                Destroy(gameObject);
            }
            
