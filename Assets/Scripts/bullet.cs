@@ -4,7 +4,7 @@ using Random = UnityEngine.Random;
 
 public class Bullet : MonoBehaviour
 {
-    private IHittable _playerInHitbox = null;
+    
     private GameObject Player;
     [SerializeField] private float damage = 5f;
     [SerializeField] float bulletSpeed = 10;

@@ -15,4 +15,9 @@ public class pitchController : MonoBehaviour
   {
     audio.pitch = pitch;
   }
+
+  public void MuteAudio()
+  {
+    audio.mute = !audio.mute;
+  }
 }

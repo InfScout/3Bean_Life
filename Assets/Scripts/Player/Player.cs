@@ -7,29 +7,24 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject MusicManager;
     public float _health;
     public HealthBar healthBar;
+    [SerializeField] private GameObject youDied;
     
     void Start()
     {
         _health = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
     }
-
-    private void Update()
-    {
-        if (Input.GetButtonDown("Q"))
-        {
-            TakeDMG(5);
-        }
-    }
+    
 
     public void TakeDMG(float dmg)
     {
             _health -= dmg;
             healthBar.SetHealth(_health);
         
-            if (_health <= 0)
+            if (_health == 0)
             {
-                //die
+                youDied.SetActive(true);
+                MusicManager.GetComponent<pitchController>().MuteAudio();
             }
             else if (_health < maxHealth * .25f)
             {
